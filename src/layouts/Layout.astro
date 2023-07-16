@@ -1,4 +1,7 @@
 ---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar"
+import Sidebar from "../components/Sidebar.vue"
 interface Props {
 	title: string;
 }
@@ -10,27 +13,47 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="grid grid-cols-[200px_minmax(200px,_1fr)] grid-rows-[80px_1fr_52px] gap-2 h-full">
+			<div class="col-span-2 bg-blue-300">
+				<Navbar client:load></Navbar>
+			</div>
+			<div class="col-span-1 bg-teal-500">
+				<Sidebar client:load></Sidebar>
+			</div>
+			<div class="col-span-1 bg-orange-500"><slot /></div>
+			<div class="col-span-2 bg-indigo-300">
+				<Footer></Footer>
+			</div>
+		</div>
 	</body>
 </html>
+
 <style is:global>
 	:root {
 		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			#da62c4 30%,
+			white 60%
+		);
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		background-color: #f6f6f6;
+	}
+	html,body {
+		height: 100%;
 	}
 	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+			DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 	}
 </style>
