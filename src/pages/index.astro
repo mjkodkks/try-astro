@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.svelte';
-import Config from '../../astro.config.mjs'
 
-const base = Config.base
+const base = import.meta.env.BASE_URL
 ---
 
 <Layout title="Test Astro Island">
 	<main>
-		<Card title="Welcome to sevelte component" body='this is body' href={ base + '/about' }></Card>
+		<Card title="Welcome to sevelte component" body='this is body' href={ base + 'about' }></Card>
 	</main>
 </Layout>
 
