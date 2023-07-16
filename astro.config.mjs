@@ -8,6 +8,6 @@ import svelte from "@astrojs/svelte";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react(), vue(), svelte()],
-  site: 'https://mjkodkks.github.io',
+  site: 'https://mjkodkks.github.io/try-astro/',
   base: '/try-astro',
 });
